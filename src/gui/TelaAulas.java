@@ -6,6 +6,9 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -31,14 +34,14 @@ public class TelaAulas extends JFrame {
 	private JTextField txtPreco;
 	private JTextField txtIdentificacao;
 	private JTextField txtDescricao;
-	private JTextField txtNomedoProfessor;
+	private JTextField txtNomeProfessor;
 	private JTextField txtEmailProfessor;
-	private JTextField txtCPFdoProfessor;
+	private JTextField txtCPFProfessor;
 	private JTextField txtNomeAluno;
 	private JTextField txtEmailAluno;
 	private JTextField txtCpfAluno;
 	private JTextField txtIdade;
-	private JTextField txtidAula;
+	private JTextField txtIdAula;
 	private JTextField txtCurso;
 	private JTextField txtProfessor;
 	private JTextField txtInicio;
@@ -54,7 +57,10 @@ public class TelaAulas extends JFrame {
 	private Sala sala;
 	private Professor professor;
 	private Aulas aulas;
-
+	private List<Aluno> listaAluno;
+	
+	
+	
 	/**
 	 * Launch the application.
 	 */
@@ -81,7 +87,7 @@ public class TelaAulas extends JFrame {
 		// Estes objetos estão vazios e serão preenchidos quando 
 		// o usuário clicar nos botões de incluir.
 		curso = new Curso();
-		aluno = new Aluno();
+		listaAluno = new ArrayList<Aluno>();
 		sala = new Sala();
 		professor = new Professor();
 		aulas = new Aulas();
@@ -100,7 +106,7 @@ public class TelaAulas extends JFrame {
 		
 		JPanel panel_curso = new JPanel();
 		panel_curso.setBackground(new Color(224, 255, 255));
-		panel_curso.setBounds(10, 11, 711, 90);
+		panel_curso.setBounds(10, 61, 711, 90);
 		contentPane.add(panel_curso);
 		panel_curso.setLayout(null);
 		
@@ -108,7 +114,7 @@ public class TelaAulas extends JFrame {
 		lblTitulodoCurso.setBackground(SystemColor.activeCaption);
 		lblTitulodoCurso.setForeground(Color.DARK_GRAY);
 		lblTitulodoCurso.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblTitulodoCurso.setBounds(10, 11, 149, 14);
+		lblTitulodoCurso.setBounds(21, 11, 149, 14);
 		panel_curso.add(lblTitulodoCurso);
 		
 		txtTituloCurso = new JTextField();
@@ -127,7 +133,7 @@ public class TelaAulas extends JFrame {
 		lblCargaHoraria.setForeground(Color.DARK_GRAY);
 		lblCargaHoraria.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblCargaHoraria.setBackground(SystemColor.activeCaption);
-		lblCargaHoraria.setBounds(10, 44, 149, 14);
+		lblCargaHoraria.setBounds(35, 44, 149, 14);
 		panel_curso.add(lblCargaHoraria);
 		
 		txtCargaHoraria = new JTextField();
@@ -139,7 +145,7 @@ public class TelaAulas extends JFrame {
 		lblPreco.setForeground(Color.DARK_GRAY);
 		lblPreco.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblPreco.setBackground(SystemColor.activeCaption);
-		lblPreco.setBounds(371, 44, 149, 14);
+		lblPreco.setBounds(389, 44, 149, 14);
 		panel_curso.add(lblPreco);
 		
 		txtPreco = new JTextField();
@@ -155,7 +161,7 @@ public class TelaAulas extends JFrame {
 		
 		JPanel panel_sala = new JPanel();
 		panel_sala.setBackground(new Color(224, 255, 255));
-		panel_sala.setBounds(10, 107, 711, 64);
+		panel_sala.setBounds(10, 162, 711, 64);
 		contentPane.add(panel_sala);
 		panel_sala.setLayout(null);
 		
@@ -163,7 +169,7 @@ public class TelaAulas extends JFrame {
 		lblIdentificacao.setForeground(Color.DARK_GRAY);
 		lblIdentificacao.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblIdentificacao.setBackground(SystemColor.activeCaption);
-		lblIdentificacao.setBounds(25, 23, 149, 14);
+		lblIdentificacao.setBounds(36, 23, 149, 14);
 		panel_sala.add(lblIdentificacao);
 		
 		txtIdentificacao = new JTextField();
@@ -176,7 +182,7 @@ public class TelaAulas extends JFrame {
 		txtDescricao.setBounds(344, 21, 317, 20);
 		panel_sala.add(txtDescricao);
 		
-		JLabel lblDescricao = new JLabel("Descrição");
+		JLabel lblDescricao = new JLabel("Descrição:");
 		lblDescricao.setForeground(Color.DARK_GRAY);
 		lblDescricao.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblDescricao.setBackground(SystemColor.activeCaption);
@@ -185,21 +191,21 @@ public class TelaAulas extends JFrame {
 		
 		JPanel panel_professor = new JPanel();
 		panel_professor.setBackground(new Color(224, 255, 255));
-		panel_professor.setBounds(10, 179, 711, 76);
+		panel_professor.setBounds(10, 237, 711, 76);
 		contentPane.add(panel_professor);
 		panel_professor.setLayout(null);
 		
-		JLabel lblNomedoProfessor = new JLabel("Nome do Professor");
+		JLabel lblNomedoProfessor = new JLabel("Nome do Professor:");
 		lblNomedoProfessor.setForeground(Color.DARK_GRAY);
 		lblNomedoProfessor.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblNomedoProfessor.setBackground(SystemColor.activeCaption);
 		lblNomedoProfessor.setBounds(20, 13, 149, 14);
 		panel_professor.add(lblNomedoProfessor);
 		
-		txtNomedoProfessor = new JTextField();
-		txtNomedoProfessor.setColumns(10);
-		txtNomedoProfessor.setBounds(20, 32, 260, 20);
-		panel_professor.add(txtNomedoProfessor);
+		txtNomeProfessor = new JTextField();
+		txtNomeProfessor.setColumns(10);
+		txtNomeProfessor.setBounds(20, 32, 260, 20);
+		panel_professor.add(txtNomeProfessor);
 		
 		txtEmailProfessor = new JTextField();
 		txtEmailProfessor.setColumns(10);
@@ -213,12 +219,12 @@ public class TelaAulas extends JFrame {
 		lblEmailProfessor.setBounds(310, 13, 149, 14);
 		panel_professor.add(lblEmailProfessor);
 		
-		txtCPFdoProfessor = new JTextField();
-		txtCPFdoProfessor.setColumns(10);
-		txtCPFdoProfessor.setBounds(534, 32, 137, 20);
-		panel_professor.add(txtCPFdoProfessor);
+		txtCPFProfessor = new JTextField();
+		txtCPFProfessor.setColumns(10);
+		txtCPFProfessor.setBounds(534, 32, 137, 20);
+		panel_professor.add(txtCPFProfessor);
 		
-		JLabel lblCPFdoProfessor = new JLabel("CPF do Professor");
+		JLabel lblCPFdoProfessor = new JLabel("CPF do Professor:");
 		lblCPFdoProfessor.setForeground(Color.DARK_GRAY);
 		lblCPFdoProfessor.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblCPFdoProfessor.setBackground(SystemColor.activeCaption);
@@ -227,7 +233,7 @@ public class TelaAulas extends JFrame {
 		
 		JPanel panel_aluno = new JPanel();
 		panel_aluno.setBackground(new Color(224, 255, 255));
-		panel_aluno.setBounds(10, 266, 711, 116);
+		panel_aluno.setBounds(10, 324, 711, 95);
 		contentPane.add(panel_aluno);
 		panel_aluno.setLayout(null);
 		
@@ -281,7 +287,7 @@ public class TelaAulas extends JFrame {
 		
 		JPanel panel_aulas = new JPanel();
 		panel_aulas.setBackground(new Color(224, 255, 255));
-		panel_aulas.setBounds(10, 393, 711, 106);
+		panel_aulas.setBounds(10, 430, 711, 106);
 		contentPane.add(panel_aulas);
 		panel_aulas.setLayout(null);
 		
@@ -290,10 +296,10 @@ public class TelaAulas extends JFrame {
 		lblddaAula.setBounds(10, 11, 169, 14);
 		panel_aulas.add(lblddaAula);
 		
-		txtidAula = new JTextField();
-		txtidAula.setBounds(96, 9, 120, 20);
-		panel_aulas.add(txtidAula);
-		txtidAula.setColumns(10);
+		txtIdAula = new JTextField();
+		txtIdAula.setBounds(96, 9, 120, 20);
+		panel_aulas.add(txtIdAula);
+		txtIdAula.setColumns(10);
 		
 		JLabel lblCurso = new JLabel("Curso:");
 		lblCurso.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -307,7 +313,7 @@ public class TelaAulas extends JFrame {
 		
 		JLabel lblProfessor = new JLabel("Professor:");
 		lblProfessor.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblProfessor.setBounds(428, 11, 87, 14);
+		lblProfessor.setBounds(440, 11, 87, 14);
 		panel_aulas.add(lblProfessor);
 		
 		txtProfessor = new JTextField();
@@ -337,7 +343,7 @@ public class TelaAulas extends JFrame {
 		
 		JLabel lblAlunos = new JLabel("Alunos:");
 		lblAlunos.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblAlunos.setBounds(428, 48, 169, 14);
+		lblAlunos.setBounds(440, 48, 169, 14);
 		panel_aulas.add(lblAlunos);
 		
 		JComboBox cboAlunos = new JComboBox();
@@ -366,9 +372,9 @@ public class TelaAulas extends JFrame {
 				//vamos adicionar os elementos do curso ao objeto curso, tais como:
 				//titulo, carga horaria, datainicio...
 				curso.setTitulo(txtTituloCurso.getText());
-				curso.setArea(cboArea.getText());
+				curso.setArea(cboArea.getSelectedItem().toString());
 				curso.setCargaHoraria(txtCargaHoraria.getText());
-				curso.Preco(Double.parseDouble(txtPrecoCurso.getText()));
+				curso.setPreco(Double.parseDouble(txtPreco.getText()));
 			
 				
 				// Vamos desativar o painel de cursos. Vamos usar
@@ -382,39 +388,63 @@ public class TelaAulas extends JFrame {
 			}
 		});
 		btnIncluirCurso.setFont(new Font("Trebuchet MS", Font.PLAIN, 14));
-		btnIncluirCurso.setBounds(10, 510, 141, 23);
+		btnIncluirCurso.setBounds(10, 547, 141, 23);
 		contentPane.add(btnIncluirCurso);
 		
 		JButton btnIncluirSala = new JButton("Incluir sala");
 		btnIncluirSala.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				txtProfessor.setText(txtNomedoProfessor.getText());
+				
+				// preencher os dados do objeto sala
+				sala.setIdentificacao(txtIdentificacao.getText());
+				sala.setDescricao(txtDescricao.getText());
+
+				txtSala.setText(txtIdentificacao.getText());
+				
 				btnIncluirSala.setEnabled(false);
 				txtIdentificacao.setEnabled(false);
 				txtDescricao.setEnabled(false);
 			}
 		});
 		btnIncluirSala.setFont(new Font("Trebuchet MS", Font.PLAIN, 14));
-		btnIncluirSala.setBounds(154, 510, 141, 23);
+		btnIncluirSala.setBounds(155, 547, 141, 23);
 		contentPane.add(btnIncluirSala);
 		
 		JButton btnIncluirProfessor = new JButton("Incluir professor");
 		btnIncluirProfessor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				professor.setNome(txtNomeProfessor.getText());
+				professor.setEmail(txtEmailProfessor.getText());
+				professor.setCpf(txtCPFProfessor.getText());
+				
+				txtProfessor.setText(txtNomeProfessor.getText());
+				
+				
 				btnIncluirProfessor.setEnabled(false);
-				txtNomedoProfessor.setEnabled(false);
+				txtNomeProfessor.setEnabled(false);
 				txtEmailProfessor.setEnabled(false);
-				txtCPFdoProfessor.setEnabled(false);
+				txtCPFProfessor.setEnabled(false);
 			}
 		});
 		btnIncluirProfessor.setFont(new Font("Trebuchet MS", Font.PLAIN, 14));
-		btnIncluirProfessor.setBounds(296, 510, 141, 23);
+		btnIncluirProfessor.setBounds(298, 547, 141, 23);
 		contentPane.add(btnIncluirProfessor);
 		
 		JButton btnIncluirAluno = new JButton("Incluir aluno");
 		btnIncluirAluno.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				aluno = new Aluno();
+				
+				aluno.setNome(txtNomeAluno.getText());
+				aluno.setEmail(txtEmailAluno.getText());
+				aluno.setCpf(txtCpfAluno.getText());
+				aluno.setIdade(Integer.parseInt(txtIdade.getText()));
+				listaAluno.add(aluno);
+				
 				cboAlunos.addItem(txtNomeAluno.getText());
+				
 				btnIncluirAluno.setEnabled(false);
 				txtNomeAluno.setEnabled(false);
 				txtEmailAluno.setEnabled(false);
@@ -423,16 +453,46 @@ public class TelaAulas extends JFrame {
 			}
 		});
 		btnIncluirAluno.setFont(new Font("Trebuchet MS", Font.PLAIN, 14));
-		btnIncluirAluno.setBounds(438, 510, 141, 23);
+		btnIncluirAluno.setBounds(440, 547, 141, 23);
 		contentPane.add(btnIncluirAluno);
 		
 		JButton btnCriarAula = new JButton("Criar a Aula");
 		btnCriarAula.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				aulas.setId(Integer.parseInt(txtIdAula.getText()));
+				aulas.setCurso(curso);
+				aulas.setProfessor(professor);
+				aulas.setInicio(new Date(Long.parseLong(txtInicio.getText())));
+				aulas.setTermino(new Date(Long.parseLong(txtTermino.getText())));
+				
+				
+				aulas.setAlunos(listaAluno.toArray(new Aluno[0]));
+				aulas.setSala(sala);
+
+				txtIdAula.setEnabled(false);
+				txtCurso.setEnabled(false);
+				txtProfessor.setEnabled(false);
+				txtInicio.setEnabled(false);
+				txtTermino.setEnabled(false);
+				txtSala.setEnabled(false);
+				
+				System.out.print(cboAlunos.getItemAt(0));
 			}
 		});
 		btnCriarAula.setFont(new Font("Trebuchet MS", Font.PLAIN, 14));
-		btnCriarAula.setBounds(580, 510, 141, 23);
+		btnCriarAula.setBounds(583, 547, 141, 23);
 		contentPane.add(btnCriarAula);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(255, 255, 255));
+		panel.setBounds(155, 11, 419, 39);
+		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel(" CADASTRO DE AULAS");
+		lblNewLabel.setFont(new Font("Playfair Display", Font.PLAIN, 14));
+		lblNewLabel.setBounds(134, 11, 153, 14);
+		panel.add(lblNewLabel);
 	}
 }
