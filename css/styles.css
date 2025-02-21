@@ -1,0 +1,92 @@
+/* Vamos importar fontes do google que fizemos download usando o comando font-face */
+@font-face {
+    font-family: "jost"; /* apelido para fonte */
+    src: url("../fonts/jost/jost-italic-variablefont_wght.ttf");
+}
+
+@font-face {
+    font-family: "heebo";
+    src: url("../fonts/heebo/heebo-variablefont_wght.ttf");
+}
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    color: grey;
+}
+
+header{
+    width: 100vw;
+}
+
+header #up{
+    display: flex;
+    align-items: center;
+    background-color: rgb(243, 112, 133);
+    justify-content: space-between;
+}
+
+#up img{
+    width: 280;
+    height: 150px;
+}
+
+#upform{
+    margin-left: 100px;
+}
+
+#up form input[type=text]{
+    width: 400px;
+    padding: 10px;
+    border:0px;
+    border-radius: 50px;
+    outline-color: black;
+}
+
+#up form input[type=submit]{
+    border: 0px;
+    padding:10px;
+    border-radius: 50px;
+    cursor: pointer;
+    background-color: grey;
+    color: white;
+}
+
+#up span{
+    color: rgb(82, 78, 78) !important;
+    margin-right: 20px;
+    
+}
+
+#up span.entrar-cadastrar{
+    font-family: "heebo";
+    color: rgb(82, 78, 78);
+}
+
+header nav{
+    background-color: rgb(240, 171, 194);
+    padding: 10px;
+    text-align: center;
+}
+
+header nav li{
+    display: inline-block;
+    margin: 0px 10px;
+}
+
+header nav li a{
+    text-decoration: none;
+    color: rgb(82, 78, 78);
+    font-family: "heebo";
+    transition: ease 0.5s;
+
+}
+
+header nav li a:hover{
+    color: rgb(31, 30, 30);
+    padding-left: 5px;
+}
