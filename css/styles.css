@@ -26,7 +26,7 @@ header{
 header #up{
     display: flex;
     align-items: center;
-    background-color: rgb(243, 112, 133);
+    background-color: rgb(105, 211, 243);
     justify-content: space-between;
 }
 
@@ -52,35 +52,35 @@ header #up{
     padding:10px;
     border-radius: 50px;
     cursor: pointer;
-    background-color: grey;
+    background-color: rgb(20, 17, 17);
     color: white;
 }
 
 #up span{
-    color: rgb(82, 78, 78) !important;
+    color: rgb(27, 26, 26) !important;
     margin-right: 20px;
     
 }
 
 #up span.entrar-cadastrar{
     font-family: "heebo";
-    color: rgb(82, 78, 78);
+    color: rgb(7, 7, 7);
 }
 
 header nav{
-    background-color: rgb(240, 171, 194);
-    padding: 10px;
+    background-color: rgb(238, 56, 120);
     text-align: center;
 }
 
 header nav li{
     display: inline-block;
     margin: 0px 10px;
+    padding:10px 0px;
 }
 
 header nav li a{
     text-decoration: none;
-    color: rgb(82, 78, 78);
+    color: rgb(10, 9, 9);
     font-family: "heebo";
     transition: ease 0.5s;
 
@@ -89,4 +89,42 @@ header nav li a{
 header nav li a:hover{
     color: rgb(31, 30, 30);
     padding-left: 5px;
+}
+
+header nav li ul{
+    position: absolute;
+    margin-top: 10px;
+    background-color: rgb(105, 211, 243);
+    display: none;
+    margin-left: -11px;
+
+}
+
+header nav li ul li{
+    display: block;
+    padding: 5px;
+    text-align: left;
+    transition: ease 1s;
+}
+
+header nav li:hover ul{
+    display: block;
+    opacity: 1;
+}
+
+header nav li:hover ul li:hover{
+    display: block;
+    background-color: white;
+    color: white;
+}
+
+header #carousel img{
+    width: 100%;
+
+}
+
+footer{
+    background-color: rgb(105, 211, 243);;
+    padding: 30px;
+    
 }
